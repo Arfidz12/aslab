@@ -81,34 +81,45 @@
       </div>
     </div>
 
-    <!-- Card Aslab -->
-      <div class="card" id="aslab" style="display:none;">
-        <div class="card-header aslab-header">
-          <h2>Sistem Piket Aslab</h2>
-          <p>Informasi mengenai shift aslab</p>
-        </div>
-        <form class="form">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Nama Aslab</label>
-          <input type="text" placeholder="Masukkan nama aslab">
-        </div>
-        <div class="form-group">
-          <label>ID Aslab</label>
-          <input type="text" placeholder="Masukkan ID Aslab">
-        </div>
+<!-- Card Aslab -->
+<div class="card" id="aslab" style="display:none;">
+  <div class="card-header aslab-header">
+    <h2>Sistem Piket Aslab</h2>
+    <p>Informasi mengenai shift aslab</p>
+  </div>
+  <form class="form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nama Aslab</label>
+        <input type="text" placeholder="Masukkan nama aslab">
       </div>
       <div class="form-group">
-        <label>Shift</label>
-        <input type="text" placeholder="Contoh: Senin 08:00 - 10:00">
+        <label>ID Aslab</label>
+        <input type="text" placeholder="Masukkan ID Aslab">
       </div>
-        <button type="submit" class="btn-submit aslab-btn">Mulai Shift</button>
-        <p class="note">Setelah mulai shift, Anda akan diarahkan ke halaman pribadi untuk mengakhiri shift</p>
-      </form>
     </div>
+    <div class="form-group">
+      <label>Pilih Shift</label>
+      <select id="shiftSelect">
+        <option value="pagi">Pagi (08:00 - 12:00)</option>
+        <option value="siang">Siang (12:00 - 16:00)</option>
+        <option value="sore">Sore (16:00 - 20:00)</option>
+        <option value="khusus">Jadwal Khusus</option>
+      </select>
+    </div>
+    <div class="form-group" id="customShiftGroup" style="display:none;">
+      <label>Jadwal Khusus</label>
+      <input type="text" placeholder="Contoh: Jumat 18:00 - 20:00">
+    </div>
+    <button type="submit" class="btn-submit aslab-btn">Mulai Shift</button>
+    <p class="note">Setelah mulai shift, Anda akan diarahkan ke halaman pribadi untuk mengakhiri shift</p>
+  </form>
+</div>
+
+
 
       <!-- Riwayat Shift -->
-    <div class="card shift-card">
+    <div class="card shift-card" style="display:none;">
       <div class="shift-header">
           <h2>Riwayat Shift</h2>
         </div>

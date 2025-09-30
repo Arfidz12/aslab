@@ -48,29 +48,26 @@ export function initNavigation() {
   });
 }
 
-// Redirect setelah Check-In
-function initCheckinRedirect() {
-  const formGuest = document.querySelector("#guestbook .form");
-  if (formGuest) {
-    formGuest.addEventListener("submit", function (e) {
-      e.preventDefault(); // cegah reload
-      window.location.href = "checkin.html"; // arahkan ke halaman check-in
-    });
-  }
+// Toggle input jadwal khusus
+document.addEventListener("DOMContentLoaded", () => {
+  const shiftSelect = document.getElementById("shiftSelect");
+  const customShiftGroup = document.getElementById("customShiftGroup");
 
-  const formAslab = document.querySelector("#aslab .form");
-  if (formAslab) {
-    formAslab.addEventListener("submit", function (e) {
-      e.preventDefault();
-      window.location.href = "checkin.html"; // bisa arahkan ke halaman shift juga kalau beda
+  if (shiftSelect) {
+    shiftSelect.addEventListener("change", () => {
+      if (shiftSelect.value === "khusus") {
+        customShiftGroup.style.display = "block";
+      } else {
+        customShiftGroup.style.display = "none";
+      }
     });
   }
-}
+});
+
 
 export function initApp() {
   initClock();
   initNavigation();
-  initCheckinRedirect(); // aktifkan redirect
 }
 
 document.addEventListener("DOMContentLoaded", initApp);
