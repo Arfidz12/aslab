@@ -15,6 +15,13 @@ export function initClock() {
   setInterval(updateTime, 1000);
 }
 
+// button submit
+document.getElementById('submit').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.location.href = 'main_page/main.html';
+  });
+
+
 // Navigasi Buku Tamu <-> Aslab
 export function initNavigation() {
   const navBtns = document.querySelectorAll(".nav-btn");

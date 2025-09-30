@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shift Piket - Guard Management</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button class="back-btn" onclick="window.history.back()">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+        </svg>
+      </button>
+      <h1>Kembali ke Beranda</h1>
+    </div>
+
+    <div class="card">
+      <div class="shift-header">
+        <div class="user-icon">👤</div>
+        <div class="shift-title">
+          <h2>Shift Aktif</h2>
+          <div class="shift-subtitle">Halaman pribadi untuk mengakhiri shift piket</div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 ..."/>
+            </svg>
+            Nama Aslab
+          </div>
+          <div class="info-value">asd</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 11H7v2h2v-2..."/>
+            </svg>
+            ID Aslab
+          </div>
+          <div class="info-value">asd</div>
+        </div>
+      </div>
+
+      <div class="shift-details">
+        <div class="detail-row">
+          <div class="detail-label">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 11H7v2h2..."/>
+            </svg>
+            Shift
+          </div>
+          <div class="detail-value">Pagi (07:00 - 12:00)</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">
+            <svg viewBox="0 0 24 24">
+              <path d="M11.99 2C6.47 2..."/>
+            </svg>
+            Waktu Mulai
+          </div>
+          <div class="detail-value">29/9/2025, 20.11.40</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26..."/>
+            </svg>
+            Status
+          </div>
+          <div class="status-badge">Aktif</div>
+        </div>
+      </div>
+
+      <div class="duration-section">
+        <div class="duration-label">Durasi Shift</div>
+        <div class="duration-value">0j 0m</div>
+        <div class="duration-info">Waktu saat ini: --.--.--</div>
+      </div>
+
+      <button class="action-btn" onclick="endShift()">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 16.17L4.83 12..."/>
+        </svg>
+        Selesai Shift
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
