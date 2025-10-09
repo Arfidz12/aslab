@@ -31,14 +31,14 @@
     </div>
 
     <!-- Form Warga Lab -->
-    <form id="formWarga" onsubmit="saveData(event)">
+    <form id="formWarga">
       <div class="form-group">
         <label for="nama">Nama</label>
         <input type="text" placeholder="Masukkan nama lengkap" id="nama" name="nama" required>
       </div>
       <div class="form-group">
-        <label for="id">ID</label>
-        <input type="text" placeholder="Masukkan nomor ID" id="id" name="id" required>
+        <label for="id">NRP</label>
+        <input type="text" placeholder="Masukkan NRP" id="id" name="id" required>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
@@ -55,37 +55,45 @@
     </form>
 
     <!-- Form Asisten Lab -->
-    <form id="formAsisten" class="hidden" onsubmit="saveData(event)">
+    <form id="formAsisten" class="hidden">
       <div class="form-group">
-        <label for="namaAsisten">Nama</label>
-        <input type="text" placeholder="Masukkan nama lengkap" id="namaAsisten" name="nama" required>
-      </div>
-      <div class="form-group">
-        <label for="idAsisten">ID</label>
-        <input type="text" placeholder="Masukkan nomor ID" id="idAsisten" name="id" required>
+        <label for="idAsisten">ID Asisten</label>
+        <input type="text" placeholder="Masukkan ID Asisten Anda" id="idAsisten" name="id" required>
       </div>
       <div class="form-group">
         <label for="shift">Shift</label>
-        <select id="shift" name="shift" class="form-select" onchange="toggleKhususShift()">
-          <option value="">Pilih shift</option>
-          <option value="Pagi">Pagi (07.00–10.00)</option>
-          <option value="Siang">Siang (11.00–14.00)</option>
-          <option value="Malam">Sore (15.00–18.00)</option>
-          <option value="Khusus">Khusus</option>
-        </select>
+          <select id="shift" name="shift" class="form-select" onchange="toggleKhususShift()" required>
+            <option value="">Pilih shift</option>
+            <option value="Shift Pagi">Pagi (07.00–10.00)</option>
+            <option value="Shift Siang">Siang (11.00–14.00)</option>
+            <option value="Shift Sore">Sore (15.00–18.00)</option>
+            <option value="Khusus">Khusus</option>
+          </select>
       </div>
       <div class="form-group hidden" id="khususShiftGroup">
-        <label for="khususShift">Jam Shift Khusus</label>
-        <input type="text" id="khususShift" name="khususShift" placeholder="Contoh: 18.00–21.00">
+        <label for="khususShift">Keterangan</label>
+        <input type="text" id="khususShift" name="khususShift" placeholder="Mengerjakan TA">
       </div>
       <div class="form-actions">
-        <button class="btn btn-primary">Submit</button>
-        <button class="btn btn-secondary" onclick="goToMainPage()">Main Page</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" onclick="goToMainPage()">Main Page</button>
       </div>
     </form>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+  const SUPABASE_URL = 'https://xvoicmarfkqlkosouowb.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2b2ljbWFyZmtxbGtvc291b3diIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MzA2MTYsImV4cCI6MjA3NTUwNjYxNn0.-L6Ki2DhO6WshBwaEO2PntL9Ei1Jg2tvEhYIeVQ9egQ';
+
+  // PENTING: Kita TIDAK MENGGUNAKAN "const" di sini agar variabelnya bisa diakses global oleh script.js
+  // Kita menggunakan objek global `supabase` dari CDN untuk memanggil .createClient
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
+  
   <script src="script.js"></script>
+
 </body>
 </html>
 

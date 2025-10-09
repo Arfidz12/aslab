@@ -340,6 +340,18 @@ body {
   animation: fadeInOut 4s ease forwards;
 }
 
+/* Label untuk role Asisten Lab */
+.role-label {
+  background-color: #f51d1d;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-top: 6px;      /* Tambahkan jarak dari nama di atasnya */
+  display: inline-block;  /* Agar ukurannya pas dengan teks */
+}
+
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
   10% { opacity: 1; transform: translateX(-50%) translateY(0); }

@@ -34,6 +34,16 @@
   </div>
 </div>
 
-  <script src="main script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL = 'https://xvoicmarfkqlkosouowb.supabase.co'; // Ganti dengan URL-mu
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2b2ljbWFyZmtxbGtvc291b3diIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MzA2MTYsImV4cCI6MjA3NTUwNjYxNn0.-L6Ki2DhO6WshBwaEO2PntL9Ei1Jg2tvEhYIeVQ9egQ'; // Ganti dengan Kunci Anon-mu
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
+
+<script src="main script.js"></script>
+
 </body>
 </html>
