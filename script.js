@@ -1,8 +1,7 @@
-// script.js (Versi Final dengan Logika Aslab Terpisah)
+// script.js (Final dengan Logika Aslab Terpisah)
 
 let activeFormType = 'warga';
 
-// --- FUNGSI UI (Tidak ada perubahan) ---
 function showForm(type) {
     const wargaForm = document.getElementById('formWarga');
     const asistenForm = document.getElementById('formAsisten');
@@ -32,6 +31,7 @@ function updateClock() {
     const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     document.getElementById('clock').textContent = `${dateStr} pukul ${timeStr}`;
 }
+
 setInterval(updateClock, 1000);
 updateClock();
 function showToast(message, isError = false) {
@@ -47,7 +47,6 @@ function showToast(message, isError = false) {
 function goToMainPage() {
     window.location.href = "main.html";
 }
-// --- AKHIR FUNGSI UI ---
 
 
 // --- FUNGSI UNTUK CHECK-IN WARGA LAB (YANG LAMA) ---
