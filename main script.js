@@ -121,8 +121,30 @@ function renderGuests(visits) {
             roleLabel = '<br><span class="role-label">Asisten Lab</span>';
         }
 
-        const waktuMasuk = new Date(visit.check_in_time).toLocaleString('id-ID', { hour12: false });
-        const waktuKeluar = visit.check_out_time ? new Date(visit.check_out_time).toLocaleString('id-ID', { hour12: false }) : '-';
+        // --- INI BAGIAN PERUBAHAN UTAMANYA ---
+        const checkInDate = new Date(visit.check_in_time);
+
+        // 1. Buat format Tanggal
+        const tanggal = checkInDate.toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+
+        // 2. Buat format Waktu Masuk (tanpa detik)
+        const waktuMasuk = checkInDate.toLocaleTimeString('id-ID', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        });
+        
+        // 3. Buat format Waktu Keluar (tanpa detik)
+        const waktuKeluar = visit.check_out_time ? new Date(visit.check_out_time).toLocaleTimeString('id-ID', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        }) : '-';
+        // --- AKHIR PERUBAHAN FORMAT ---
         
         const userName = visit.name || 'Nama Tidak Ditemukan';
         const userEmail = user ? user.email : '';
@@ -148,14 +170,22 @@ function renderGuests(visits) {
                 <span class="guest-label">${labelKeperluan}</span><br>
                 <span class="guest-value">${visit.purpose || "-"}</span>
               </div>
+
+            <div class="guest-item">
+                <span class="guest-label">Tanggal</span><br>
+                <span class="guest-value">${tanggal}</span>
+              </div>
+
               <div class="guest-item">
                 <span class="guest-label">Waktu Masuk</span><br>
                 <span class="guest-value">${waktuMasuk}</span>
               </div>
+
               <div class="guest-item">
                 <span class="guest-label">Waktu Keluar</span><br>
                 <span class="guest-value">${waktuKeluar}</span>
               </div>
+
               <div class="guest-item">
                 <span class="guest-label">Status</span><br>
                 <span class="guest-status ${sudahCheckout ? 'status-selesai' : 'status-lab'}">
