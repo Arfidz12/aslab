@@ -1,6 +1,6 @@
-// main script.js (Versi Final Terbaru)
+// main script.js (Versi Lengkap dengan Marker)
 
-// --- FUNGSI UI (Tidak ada perubahan) ---
+// --- FUNGSI UI (TIDAK BERUBAH) ---
 function updateClock() {
     const now = new Date();
     const options = { day: '2-digit', month: 'long', year: 'numeric' };
@@ -23,6 +23,59 @@ function showToast(message, isError = false) {
 }
 // --- AKHIR FUNGSI UI ---
 
+// FILTER SORTING
+
+let allVisitsData = []; // Menyimpan semua data untuk filtering
+
+
+const filterStatus = document.getElementById('filterStatus');
+const sortBy = document.getElementById('sortBy');
+const searchInput = document.getElementById('searchName');
+
+// Event listeners untuk filter & search
+if (filterStatus) {
+    filterStatus.addEventListener('change', applyFiltersAndRender);
+}
+if (sortBy) {
+    sortBy.addEventListener('change', applyFiltersAndRender);
+}
+if (searchInput) {
+    searchInput.addEventListener('input', applyFiltersAndRender);
+}
+
+
+function applyFiltersAndRender() {
+    let filteredData = [...allVisitsData];
+
+    // Filter berdasarkan status
+    const statusFilter = filterStatus ? filterStatus.value : 'all';
+    if (statusFilter !== 'all') {
+    filteredData = filteredData.filter(visit => {
+        const cleanStatus = (visit.status || '').replace(/['"]+/g, '').trim();
+        return cleanStatus === statusFilter;
+        });
+    }
+
+
+    // Search berdasarkan nama
+    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    if (searchTerm) {
+        filteredData = filteredData.filter(visit => 
+            visit.name && visit.name.toLowerCase().includes(searchTerm)
+        );
+    }
+
+    // Sorting
+    const sortValue = sortBy ? sortBy.value : 'newest';
+    if (sortValue === 'newest') {
+        filteredData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    } else if (sortValue === 'oldest') {
+        filteredData.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    }
+
+    renderGuests(filteredData);
+}
+
 
 // ===================================================================
 // BAGIAN UTAMA LOGIKA SUPABASE
@@ -30,8 +83,8 @@ function showToast(message, isError = false) {
 
 const guestListContainer = document.querySelector('.guest-list');
 
+//  DIUBAH: Fungsi ini sekarang hanya fetch data, lalu panggil applyFiltersAndRender
 async function fetchAndRenderGuests() {
-    // Kueri diubah agar lebih efisien: kita hanya butuh 'role' dan 'email' dari tabel users
     const { data: visits, error } = await supabase
         .from('visits')
         .select('*, users(role, email)')
@@ -43,8 +96,18 @@ async function fetchAndRenderGuests() {
         return;
     }
 
+    // BARIS BARU: Simpan data ke variabel global
+    allVisitsData = visits || [];
+    
+    // BARIS BARU: Terapkan filter dan render
+    applyFiltersAndRender();
+}
+
+// FUNGSI BARU: Pisahkan logic render dari fetch
+// (Ini adalah kode render yang TADINYA ada di dalam fetchAndRenderGuests)
+function renderGuests(visits) {
     if (visits.length === 0) {
-        guestListContainer.innerHTML = '<p>Belum ada tamu yang check-in hari ini.</p>';
+        guestListContainer.innerHTML = '<p>Tidak ada data yang sesuai dengan filter.</p>';
         return;
     }
 
@@ -53,7 +116,6 @@ async function fetchAndRenderGuests() {
         const user = visit.users;
         const sudahCheckout = visit.status === 'Selesai';
         
-        // Buat variabel untuk label role
         let roleLabel = '';
         if (user && user.role === 'Asisten Lab') {
             roleLabel = '<br><span class="role-label">Asisten Lab</span>';
@@ -62,7 +124,6 @@ async function fetchAndRenderGuests() {
         const waktuMasuk = new Date(visit.check_in_time).toLocaleString('id-ID', { hour12: false });
         const waktuKeluar = visit.check_out_time ? new Date(visit.check_out_time).toLocaleString('id-ID', { hour12: false }) : '-';
         
-        // Ambil nama langsung dari tabel 'visits'
         const userName = visit.name || 'Nama Tidak Ditemukan';
         const userEmail = user ? user.email : '';
         const labelKeperluan = (user && user.role === 'aslab') ? 'Shift' : 'Keperluan';
@@ -98,7 +159,7 @@ async function fetchAndRenderGuests() {
               <div class="guest-item">
                 <span class="guest-label">Status</span><br>
                 <span class="guest-status ${sudahCheckout ? 'status-selesai' : 'status-lab'}">
-                  ${visit.status}
+                 ${visit.status.replace(/['"]+/g, '')}
                 </span>
               </div>
             </div>
@@ -119,7 +180,7 @@ async function fetchAndRenderGuests() {
 }
 
 
-// --- LOGIKA CHECKOUT (Tidak ada perubahan) ---
+// --- LOGIKA CHECKOUT (TIDAK BERUBAH SAMA SEKALI) ---
 function showConfirmDialog(visitId, userName, userEmail) {
     const oldDialog = document.querySelector('.confirm-dialog');
     if (oldDialog) oldDialog.remove();
@@ -194,7 +255,7 @@ async function handleConfirmCheckout(visitId, userEmail, code, dialog) {
 }
 
 
-// --- REALTIME LISTENER (Tidak ada perubahan) ---
+// --- REALTIME LISTENER (TIDAK BERUBAH) ---
 const channel = supabase.channel('db-changes')
     .on('postgres_changes', {
         event: '*',

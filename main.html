@@ -27,6 +27,37 @@
   </div>
 </div>
 
+<div class="filter-section">
+    <div class="filter-controls">
+        <div class="filter-group">
+            <label for="searchName">🔍 Cari Nama</label>
+            <input 
+                type="text" 
+                id="searchName" 
+                placeholder="Ketik nama tamu..." 
+                class="filter-input"
+            >
+        </div>
+        
+        <div class="filter-group">
+            <label for="filterStatus">📊 Status</label>
+            <select id="filterStatus" class="filter-select">
+                <option value="all">Semua Status</option>
+                <option value="Di Lab">Di Lab</option>
+                <option value="Selesai">Selesai</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="sortBy">🔽 Urutkan</label>
+            <select id="sortBy" class="filter-select">
+                <option value="newest">Terbaru</option>
+                <option value="oldest">Terlama</option>
+            </select>
+        </div>
+    </div>
+</div>
+
   <!-- Main Content -->
 <div class="guest-section">
   <h2 class="guest-title">Data Tamu</h2>
