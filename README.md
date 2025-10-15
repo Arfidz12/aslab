@@ -1,10 +1,10 @@
 # Project-Buku-Tamu
 
 📋 **Buku Tamu Digital Lab B201: Sistem Buku Tamu & Jadwal Asisten Lab**
-Project ini adalah aplikasi web modern yang dirancang untuk membantu laboratorium multimedia dalam mencatat kunjungan tamu dan mengelola jadwal asisten laboratorium secara efisien dan real-time.
+<br>Project ini adalah aplikasi web modern yang dirancang untuk membantu laboratorium multimedia dalam mencatat kunjungan tamu dan mengelola jadwal asisten laboratorium secara efisien dan real-time.
 
 📜 **Tentang Proyek**
-Proyek ini dibangun sebagai solusi digital untuk menggantikan proses manual dalam pencatatan tamu dan penjadwalan asisten lab yang rentan terhadap kesalahan dan tidak efisien. Aplikasi web ini menyediakan platform terpusat di mana koordinator lab dapat dengan mudah mengelola data kunjungan dan jadwal, sementara para asisten dapat melihat jadwal tugas mereka dengan jelas.
+<br>Proyek ini dibangun sebagai solusi digital untuk menggantikan proses manual dalam pencatatan tamu dan penjadwalan asisten lab yang rentan terhadap kesalahan dan tidak efisien. Aplikasi web ini menyediakan platform terpusat di mana koordinator lab dapat dengan mudah mengelola data kunjungan dan jadwal, sementara para asisten dapat melihat jadwal tugas mereka dengan jelas.
 
 Aplikasi ini dikembangkan dengan antarmuka yang responsif, memastikan pengalaman pengguna yang baik di berbagai perangkat. Dengan memanfaatkan Supabase sebagai backend, kami mendapatkan kekuatan database PostgreSQL, sistem otentikasi yang aman, dan API instan tanpa perlu mengelola server sendiri.
 
